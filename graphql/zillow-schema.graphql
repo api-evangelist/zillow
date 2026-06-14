@@ -1,0 +1,688 @@
+"""
+Zillow GraphQL Schema
+Conceptual schema for the Zillow real estate search and data platform.
+Based on Bridge Interactive (RESO Web API), Zillow Tech Connect, Mortech, and Zillow Showcase.
+"""
+
+# ─────────────────────────────────────────────
+# Core Location Types
+# ─────────────────────────────────────────────
+
+"""Physical postal address of a property."""
+type Address {
+  streetNumber: String
+  streetName: String
+  unitNumber: String
+  city: String
+  state: String
+  postalCode: String
+  county: String
+  country: String
+  formatted: String
+}
+
+"""Geographic location expressed as latitude and longitude."""
+type Coordinates {
+  latitude: Float!
+  longitude: Float!
+}
+
+"""Full geographic location including coordinates and display context."""
+type GeoLocation {
+  coordinates: Coordinates!
+  address: Address
+  mapZoom: Int
+}
+
+# ─────────────────────────────────────────────
+# Property and Listing Types
+# ─────────────────────────────────────────────
+
+"""A real property (parcel) with identifying and structural attributes."""
+type Property {
+  zpid: ID!
+  address: Address!
+  geoLocation: GeoLocation
+  yearBuilt: Int
+  lotSizeSqFt: Float
+  livingAreaSqFt: Float
+  bedrooms: Int
+  bathrooms: Float
+  propertyType: String
+  parcelNumber: String
+  zestimate: ZestimateValue
+  homeEstimate: HomeEstimate
+  priceHistory: [PriceEvent]
+  taxHistory: [TaxRecord]
+  schools: [School]
+  neighborhood: Neighborhood
+  floodRisk: FloodRisk
+  fireRisk: FireRisk
+  photos: [Photo]
+  virtualTour: VirtualTour
+  floorPlan: FloorPlan
+  zillow3D: Zillow3D
+}
+
+"""An active or off-market listing for a property."""
+type PropertyListing {
+  listingId: ID!
+  property: Property!
+  listingDetail: ListingDetail!
+  mlsListing: MLSListing
+  listingAgent: ListingAgent
+  brokerage: Brokerage
+  openHouses: [OpenHouse]
+  status: String
+  daysOnMarket: Int
+  listDate: String
+  expirationDate: String
+  isFSBO: Boolean
+}
+
+"""Detailed listing attributes including pricing and description."""
+type ListingDetail {
+  listingId: ID!
+  price: Float
+  pricePerSqFt: Float
+  description: String
+  features: [String]
+  appliances: [String]
+  parkingSpaces: Int
+  garageSpaces: Int
+  heatingType: String
+  coolingType: String
+  basement: Boolean
+  pool: Boolean
+  waterfront: Boolean
+  viewType: String
+  hoaFee: Float
+  taxAnnual: Float
+  listingUrl: String
+}
+
+# ─────────────────────────────────────────────
+# Valuation Types
+# ─────────────────────────────────────────────
+
+"""Zillow's automated Zestimate valuation for a property."""
+type ZestimateValue {
+  zpid: ID!
+  amount: Float!
+  currency: String
+  lowRange: Float
+  highRange: Float
+  percentile: Float
+  lastUpdated: String
+  changeThirtyDay: Float
+  changeOneYear: Float
+}
+
+"""A general home value estimate (may reflect non-Zestimate sources)."""
+type HomeEstimate {
+  estimatedValue: Float!
+  valuationMethod: String
+  confidenceScore: Float
+  asOfDate: String
+}
+
+"""A homeowner's estimate of worth, typically user-entered."""
+type HomeWorth {
+  zpid: ID!
+  ownerEstimate: Float
+  submittedAt: String
+}
+
+# ─────────────────────────────────────────────
+# Price and Tax History
+# ─────────────────────────────────────────────
+
+"""A historical price event (sale, listing, or price change)."""
+type PriceEvent {
+  eventDate: String!
+  price: Float!
+  priceChangeRate: Float
+  eventType: String
+  source: String
+}
+
+"""Full price history for a property."""
+type PriceHistory {
+  zpid: ID!
+  events: [PriceEvent]
+}
+
+"""A single year's property tax record."""
+type TaxRecord {
+  taxYear: Int!
+  taxPaid: Float
+  taxAssessment: Float
+  assessmentIncreaseRate: Float
+}
+
+"""Full tax history for a property."""
+type TaxHistory {
+  zpid: ID!
+  records: [TaxRecord]
+}
+
+# ─────────────────────────────────────────────
+# Schools
+# ─────────────────────────────────────────────
+
+"""A school serving a property's area."""
+type School {
+  schoolId: ID!
+  name: String!
+  type: String
+  gradeRange: String
+  distanceFromProperty: Float
+  rating: SchoolRating
+  address: Address
+}
+
+"""Rating details for a school."""
+type SchoolRating {
+  overallRating: Float
+  ratingProvider: String
+  studentTeacherRatio: Float
+  reviewCount: Int
+}
+
+# ─────────────────────────────────────────────
+# Neighborhood and Livability
+# ─────────────────────────────────────────────
+
+"""A named neighborhood containing a property."""
+type Neighborhood {
+  neighborhoodId: ID!
+  name: String!
+  city: String
+  state: String
+  boundary: NeighborhoodBoundary
+  walkScore: WalkScore
+  transitScore: TransitScore
+  bikeScore: BikeScore
+  medianListPrice: Float
+  medianSalePrice: Float
+}
+
+"""GeoJSON polygon boundary of a neighborhood."""
+type NeighborhoodBoundary {
+  neighborhoodId: ID!
+  geoJsonPolygon: String
+}
+
+"""Walk Score livability metric."""
+type WalkScore {
+  score: Int!
+  description: String
+  asOfDate: String
+}
+
+"""Transit Score livability metric."""
+type TransitScore {
+  score: Int!
+  description: String
+  asOfDate: String
+}
+
+"""Bike Score livability metric."""
+type BikeScore {
+  score: Int!
+  description: String
+  asOfDate: String
+}
+
+# ─────────────────────────────────────────────
+# Risk Types
+# ─────────────────────────────────────────────
+
+"""Flood risk assessment for a property."""
+type FloodRisk {
+  zpid: ID!
+  riskLevel: String
+  femaZone: String
+  riskScore: Int
+  dataProvider: String
+}
+
+"""Wildfire and fire risk assessment for a property."""
+type FireRisk {
+  zpid: ID!
+  riskLevel: String
+  riskScore: Int
+  dataProvider: String
+}
+
+# ─────────────────────────────────────────────
+# Media Types
+# ─────────────────────────────────────────────
+
+"""A Zillow 3D Home interactive tour for a listing."""
+type Zillow3D {
+  tourId: ID!
+  zpid: ID!
+  tourUrl: String!
+  capturedAt: String
+  roomCount: Int
+}
+
+"""A virtual tour link for a property listing."""
+type VirtualTour {
+  tourId: ID!
+  zpid: ID!
+  tourUrl: String!
+  provider: String
+  tourType: String
+}
+
+"""An interactive or static floor plan for a listing."""
+type FloorPlan {
+  floorPlanId: ID!
+  zpid: ID!
+  imageUrl: String
+  interactiveUrl: String
+  squareFootage: Float
+  levels: Int
+}
+
+"""A photograph of a listing."""
+type Photo {
+  photoId: ID!
+  zpid: ID!
+  url: String!
+  caption: String
+  order: Int
+  width: Int
+  height: Int
+}
+
+# ─────────────────────────────────────────────
+# MLS and Agent Types
+# ─────────────────────────────────────────────
+
+"""An MLS-sourced listing record (Bridge Interactive / RESO)."""
+type MLSListing {
+  mlsId: ID!
+  mlsNumber: String!
+  mlsName: String
+  listingKey: String
+  originatingSystem: String
+  modificationTimestamp: String
+  status: String
+}
+
+"""A real estate agent associated with a listing."""
+type ListingAgent {
+  agentId: ID!
+  fullName: String!
+  email: String
+  phone: String
+  licenseNumber: String
+  stateLicensed: String
+  brokerage: Brokerage
+  profile: AgentProfile
+}
+
+"""Public profile data for a real estate agent."""
+type AgentProfile {
+  agentId: ID!
+  bio: String
+  profilePhotoUrl: String
+  yearsOfExperience: Int
+  totalSales: Int
+  averageSalePrice: Float
+  reviewCount: Int
+  averageRating: Float
+  specializations: [String]
+  serviceAreas: [String]
+}
+
+"""A brokerage associated with a listing or agent."""
+type Brokerage {
+  brokerageId: ID!
+  name: String!
+  licenseNumber: String
+  address: Address
+  phone: String
+  website: String
+  logoUrl: String
+}
+
+"""A brokerage-level listing record."""
+type BrokerageListing {
+  listingId: ID!
+  brokerage: Brokerage!
+  property: Property!
+  listPrice: Float
+  status: String
+  mlsListing: MLSListing
+}
+
+# ─────────────────────────────────────────────
+# Seller and Construction Types
+# ─────────────────────────────────────────────
+
+"""A for-sale-by-owner listing without agent representation."""
+type ForSaleByOwner {
+  listingId: ID!
+  property: Property!
+  ownerName: String
+  ownerPhone: String
+  ownerEmail: String
+  listPrice: Float
+  listDate: String
+}
+
+"""A new-construction listing offered by a builder."""
+type NewConstruction {
+  listingId: ID!
+  property: Property!
+  builder: HomeBuilder
+  community: Community
+  availableFloorPlans: [FloorPlan]
+  estimatedCompletionDate: String
+  basePrice: Float
+}
+
+"""A home builder company offering new construction."""
+type HomeBuilder {
+  builderId: ID!
+  name: String!
+  website: String
+  logoUrl: String
+  yearsInBusiness: Int
+  communitiesCount: Int
+}
+
+"""A planned or active residential community by a builder."""
+type Community {
+  communityId: ID!
+  name: String!
+  builder: HomeBuilder
+  address: Address
+  geoLocation: GeoLocation
+  homeCount: Int
+  priceRangeLow: Float
+  priceRangeHigh: Float
+  amenities: [String]
+  status: String
+}
+
+# ─────────────────────────────────────────────
+# Showing and Open House
+# ─────────────────────────────────────────────
+
+"""A scheduled open house event for a listing."""
+type OpenHouse {
+  openHouseId: ID!
+  listingId: ID!
+  startTime: String!
+  endTime: String!
+  isVirtual: Boolean
+  appointmentRequired: Boolean
+  description: String
+}
+
+"""A buyer's request to schedule a private showing."""
+type ShowingRequest {
+  requestId: ID!
+  listingId: ID!
+  requestedDate: String!
+  requestedTime: String!
+  buyerName: String
+  buyerEmail: String
+  buyerPhone: String
+  status: String
+  agentId: String
+}
+
+# ─────────────────────────────────────────────
+# Mortgage Types
+# ─────────────────────────────────────────────
+
+"""A mortgage rate and payment estimate from Mortech."""
+type MortgageEstimate {
+  estimateId: ID!
+  loanAmount: Float!
+  loanType: String
+  loanTermYears: Int
+  interestRate: Float
+  apr: Float
+  monthlyPayment: MonthlyPayment
+  downPayment: DownPayment
+  asOfDate: String
+}
+
+"""Breakdown of an estimated monthly mortgage payment."""
+type MonthlyPayment {
+  total: Float!
+  principal: Float
+  interest: Float
+  taxes: Float
+  insurance: Float
+  hoaFee: Float
+  pmi: Float
+}
+
+"""Down payment details for a purchase mortgage scenario."""
+type DownPayment {
+  amount: Float!
+  percentage: Float!
+  closingCostsEstimate: Float
+}
+
+"""Affordability calculation for a buyer based on income and debt."""
+type AffordabilityCalc {
+  calcId: ID!
+  annualIncome: Float
+  monthlyDebt: Float
+  downPaymentAmount: Float
+  estimatedMaxPurchasePrice: Float
+  estimatedMonthlyPayment: Float
+  debtToIncomeRatio: Float
+}
+
+# ─────────────────────────────────────────────
+# Zillow Platform Types
+# ─────────────────────────────────────────────
+
+"""A Zillow-branded home record combining listing and valuation data."""
+type ZillowHome {
+  zpid: ID!
+  property: Property!
+  listing: PropertyListing
+  zestimate: ZestimateValue
+  isUserSaved: Boolean
+}
+
+"""A map view context for rendering Zillow property pins."""
+type ZillowMap {
+  centerCoordinates: Coordinates!
+  zoomLevel: Int!
+  visibleListings: [PropertyListing]
+  boundingBox: String
+  mapType: String
+}
+
+"""A home saved to a user's Zillow account."""
+type SavedHome {
+  savedId: ID!
+  userId: ID!
+  zpid: ID!
+  savedAt: String
+  notes: String
+  property: Property
+}
+
+"""A saved search with filters stored in a user's Zillow account."""
+type SavedSearch {
+  searchId: ID!
+  userId: ID!
+  name: String
+  filters: SearchFilter
+  createdAt: String
+  alertFrequency: String
+}
+
+"""Search filter parameters for property queries."""
+type SearchFilter {
+  location: String
+  minPrice: Float
+  maxPrice: Float
+  minBeds: Int
+  maxBeds: Int
+  minBaths: Float
+  maxBaths: Float
+  minSqFt: Float
+  maxSqFt: Float
+  propertyTypes: [String]
+  listingStatus: [String]
+  daysOnMarketMax: Int
+  hasPool: Boolean
+  hasGarage: Boolean
+  isNewConstruction: Boolean
+  isFSBO: Boolean
+  keywords: String
+}
+
+"""A collection of search result listings."""
+type SearchResult {
+  totalCount: Int!
+  pageSize: Int!
+  pageNumber: Int!
+  listings: [PropertyListing]
+  map: ZillowMap
+}
+
+"""A search result set for real estate agents."""
+type AgentSearch {
+  totalCount: Int!
+  agents: [AgentProfile]
+  location: String
+  specialty: String
+}
+
+# ─────────────────────────────────────────────
+# Rental Types
+# ─────────────────────────────────────────────
+
+"""A rental property listing."""
+type RentalListing {
+  rentalId: ID!
+  property: Property!
+  monthlyRent: Float!
+  depositAmount: Float
+  availableDate: String
+  leaseTerm: String
+  petPolicy: PetPolicy
+  amenities: [RentalAmenity]
+  utilitiesIncluded: [String]
+  listingAgent: ListingAgent
+  status: String
+}
+
+"""An amenity offered by a rental property."""
+type RentalAmenity {
+  amenityId: ID!
+  name: String!
+  category: String
+  description: String
+}
+
+"""Pet policy details for a rental listing."""
+type PetPolicy {
+  petsAllowed: Boolean!
+  petsDescription: String
+  catsAllowed: Boolean
+  dogsAllowed: Boolean
+  maxPetWeight: Float
+  petDepositAmount: Float
+  monthlyPetFee: Float
+  breedRestrictions: [String]
+}
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type Query {
+  """Look up a property by its Zillow ZPID."""
+  property(zpid: ID!): Property
+
+  """Search for listings using filter criteria."""
+  searchListings(filters: SearchFilterInput!, page: Int, pageSize: Int): SearchResult
+
+  """Retrieve a specific listing by ID."""
+  listing(listingId: ID!): PropertyListing
+
+  """Get Zestimate valuation for a property."""
+  zestimate(zpid: ID!): ZestimateValue
+
+  """Get price history for a property."""
+  priceHistory(zpid: ID!): PriceHistory
+
+  """Get tax history for a property."""
+  taxHistory(zpid: ID!): TaxHistory
+
+  """Look up a neighborhood by ID."""
+  neighborhood(neighborhoodId: ID!): Neighborhood
+
+  """Get schools near a property."""
+  schools(zpid: ID!): [School]
+
+  """Search for real estate agents."""
+  agentSearch(location: String!, specialty: String, page: Int): AgentSearch
+
+  """Get an agent's public profile."""
+  agentProfile(agentId: ID!): AgentProfile
+
+  """Get a brokerage by ID."""
+  brokerage(brokerageId: ID!): Brokerage
+
+  """Get mortgage estimate for a scenario."""
+  mortgageEstimate(purchasePrice: Float!, downPaymentPct: Float!, loanTermYears: Int!): MortgageEstimate
+
+  """Calculate affordability for a buyer."""
+  affordabilityCalc(annualIncome: Float!, monthlyDebt: Float!, downPaymentAmount: Float!): AffordabilityCalc
+
+  """Search for rental listings."""
+  rentalSearch(filters: SearchFilterInput!, page: Int, pageSize: Int): SearchResult
+
+  """Get a rental listing by ID."""
+  rentalListing(rentalId: ID!): RentalListing
+
+  """Get open houses for a listing."""
+  openHouses(listingId: ID!): [OpenHouse]
+
+  """Get a user's saved homes."""
+  savedHomes(userId: ID!): [SavedHome]
+
+  """Get a user's saved searches."""
+  savedSearches(userId: ID!): [SavedSearch]
+
+  """Get map context for a search area."""
+  map(centerLat: Float!, centerLng: Float!, zoom: Int!): ZillowMap
+}
+
+"""Input version of SearchFilter for query arguments."""
+input SearchFilterInput {
+  location: String
+  minPrice: Float
+  maxPrice: Float
+  minBeds: Int
+  maxBeds: Int
+  minBaths: Float
+  maxBaths: Float
+  minSqFt: Float
+  maxSqFt: Float
+  propertyTypes: [String]
+  listingStatus: [String]
+  daysOnMarketMax: Int
+  hasPool: Boolean
+  hasGarage: Boolean
+  isNewConstruction: Boolean
+  isFSBO: Boolean
+  keywords: String
+}

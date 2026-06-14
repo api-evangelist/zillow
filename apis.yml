@@ -1,18 +1,16 @@
 aid: zillow
 name: Zillow
-description: >-
-  Zillow is the largest U.S. real-estate marketplace, offering home and rental
-  listings, Zestimate home value estimates, mortgage tools, and a connected
-  agent and lender ecosystem. Zillow Group owns Trulia, StreetEasy, HotPads,
-  Out East, Bridge Interactive, Mortech, Showcase, and ShowingTime+. Zillow
-  sunset its legacy public consumer APIs (Zillow Web Services, the GetSearchResults
-  / GetZestimate / Property Details APIs and the Mortgage APIs) on September 30,
-  2021. Programmatic access to Zillow Group listing, broker, and lender data is
-  now delivered through Bridge Interactive (bridgedataoutput.com) for licensed
-  real-estate professionals and MLSs, the Zillow Tech Connect partner program
-  for vendors, Mortech for mortgage pricing, and the Showcase listing
-  enhancement product. This profile documents what is publicly findable on each
-  surviving API surface.
+description: Zillow is the largest U.S. real-estate marketplace, offering home and
+  rental listings, Zestimate home value estimates, mortgage tools, and a connected
+  agent and lender ecosystem. Zillow Group owns Trulia, StreetEasy, HotPads, Out East,
+  Bridge Interactive, Mortech, Showcase, and ShowingTime+. Zillow sunset its legacy
+  public consumer APIs (Zillow Web Services, the GetSearchResults / GetZestimate /
+  Property Details APIs and the Mortgage APIs) on September 30, 2021. Programmatic
+  access to Zillow Group listing, broker, and lender data is now delivered through
+  Bridge Interactive (bridgedataoutput.com) for licensed real-estate professionals
+  and MLSs, the Zillow Tech Connect partner program for vendors, Mortech for mortgage
+  pricing, and the Showcase listing enhancement product. This profile documents what
+  is publicly findable on each surviving API surface.
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://www.zillow.com
 created: '2024-01-01'
@@ -21,182 +19,176 @@ specificationVersion: '0.19'
 type: Index
 access: 3rd-Party
 tags:
-  - Bridge
-  - Brokers
-  - IDX
-  - Lenders
+- Bridge
+- Brokers
+- IDX
+- Lenders
+- Listings
+- Mortgage
+- MLS
+- Real Estate
+- Rentals
+- RESO
+apis:
+- aid: zillow:zillow-web-services-historical
+  name: Zillow Web Services (Historical / Sunset)
+  description: Zillow Web Services were the legacy public XML-based APIs from Zillow
+    including GetSearchResults, GetZestimate, GetDeepSearchResults, GetUpdatedPropertyDetails,
+    GetComps, GetRegionChildren, and the Neighborhood and Mortgage APIs. The full
+    suite was deprecated and shut down on September 30, 2021. Existing keys stopped
+    functioning. No new access is granted. Equivalent listing and valuation data is
+    now delivered to licensed parties through Bridge Interactive.
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://www.zillowgroup.com/developers
+  baseURL: https://www.zillow.com/webservice
+  tags:
+  - Deprecated
   - Listings
+  - Real Estate
+  - Sunset
+  - Zestimate
+  properties:
+  - type: Successor
+    url: https://bridgedataoutput.com
+  - type: Announcement
+    url: https://www.zillowgroup.com/developers
+  - url: graphql/zillow-graphql.md
+    type: GraphQL
+- aid: zillow:bridge-interactive-api
+  name: Bridge Interactive API
+  description: Bridge Interactive is Zillow Group's RESO-compliant data distribution
+    platform for MLSs, brokers, and approved vendors. It exposes a RESO Web API (OData-based)
+    for searching listings, members, offices, media, and other RESO Data Dictionary
+    resources, plus a Listing Output service for bulk replication. Access requires
+    MLS approval and is gated per data feed.
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://bridgedataoutput.com/docs/platform/
+  baseURL: https://api.bridgedataoutput.com
+  tags:
+  - Bridge
+  - Listings
+  - MLS
+  - OData
+  - Real Estate
+  - RESO
+  properties:
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/
+  - type: Portal
+    url: https://bridgedataoutput.com
+  - type: Authentication
+    url: https://bridgedataoutput.com/docs/platform/?ref=authentication
+- aid: zillow:zillow-tech-connect
+  name: Zillow Tech Connect
+  description: Zillow Tech Connect is the partner program that lets approved real-estate
+    software vendors integrate with Zillow Premier Agent for contact, lead, and listing
+    sync. Vendors are vetted and onboarded directly with Zillow Group rather than
+    via a self-serve developer portal.
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://www.zillowgroup.com/tech-connect/
+  baseURL: https://www.zillowgroup.com/tech-connect/
+  tags:
+  - CRM
+  - Leads
+  - Partners
+  - Real Estate
+  properties:
+  - type: Portal
+    url: https://www.zillowgroup.com/tech-connect/
+- aid: zillow:mortech-api
+  name: Mortech API
+  description: Mortech is Zillow Group's mortgage pricing and product eligibility
+    engine for lenders and partners. It exposes web services for real-time rate quotes,
+    scenario pricing, and product and pricing engine (PPE) workflows used by lender
+    websites, LOS integrations, and rate tables on Zillow.
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://www.mortech-inc.com
+  baseURL: https://www.mortech-inc.com
+  tags:
+  - Lenders
   - Mortgage
+  - Pricing
+  - Rates
+  properties:
+  - type: Portal
+    url: https://www.mortech-inc.com
+- aid: zillow:showcase-api
+  name: Zillow Showcase
+  description: Zillow Showcase is a premium listing enhancement product for agents
+    and MLSs that integrates immersive media (interactive floor plans, virtual tours,
+    AI-enhanced photography) into Zillow listings. Integration is delivered through
+    MLS feed enrichment and Zillow Group partner onboarding rather than a self-serve
+    public API.
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://www.zillow.com/z/showcase/
+  baseURL: https://www.zillow.com
+  tags:
+  - Listings
+  - Media
   - MLS
   - Real Estate
-  - Rentals
-  - RESO
-apis:
-  - aid: zillow:zillow-web-services-historical
-    name: Zillow Web Services (Historical / Sunset)
-    description: >-
-      Zillow Web Services were the legacy public XML-based APIs from Zillow
-      including GetSearchResults, GetZestimate, GetDeepSearchResults,
-      GetUpdatedPropertyDetails, GetComps, GetRegionChildren, and the
-      Neighborhood and Mortgage APIs. The full suite was deprecated and shut
-      down on September 30, 2021. Existing keys stopped functioning. No new
-      access is granted. Equivalent listing and valuation data is now
-      delivered to licensed parties through Bridge Interactive.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://www.zillowgroup.com/developers
-    baseURL: https://www.zillow.com/webservice
-    tags:
-      - Deprecated
-      - Listings
-      - Real Estate
-      - Sunset
-      - Zestimate
-    properties:
-      - type: Successor
-        url: https://bridgedataoutput.com
-      - type: Announcement
-        url: https://www.zillowgroup.com/developers
-  - aid: zillow:bridge-interactive-api
-    name: Bridge Interactive API
-    description: >-
-      Bridge Interactive is Zillow Group's RESO-compliant data distribution
-      platform for MLSs, brokers, and approved vendors. It exposes a RESO Web
-      API (OData-based) for searching listings, members, offices, media, and
-      other RESO Data Dictionary resources, plus a Listing Output service for
-      bulk replication. Access requires MLS approval and is gated per data
-      feed.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://bridgedataoutput.com/docs/platform/
-    baseURL: https://api.bridgedataoutput.com
-    tags:
-      - Bridge
-      - Listings
-      - MLS
-      - OData
-      - Real Estate
-      - RESO
-    properties:
-      - type: Documentation
-        url: https://bridgedataoutput.com/docs/platform/
-      - type: Portal
-        url: https://bridgedataoutput.com
-      - type: Authentication
-        url: https://bridgedataoutput.com/docs/platform/?ref=authentication
-  - aid: zillow:zillow-tech-connect
-    name: Zillow Tech Connect
-    description: >-
-      Zillow Tech Connect is the partner program that lets approved real-estate
-      software vendors integrate with Zillow Premier Agent for contact, lead,
-      and listing sync. Vendors are vetted and onboarded directly with Zillow
-      Group rather than via a self-serve developer portal.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://www.zillowgroup.com/tech-connect/
-    baseURL: https://www.zillowgroup.com/tech-connect/
-    tags:
-      - CRM
-      - Leads
-      - Partners
-      - Real Estate
-    properties:
-      - type: Portal
-        url: https://www.zillowgroup.com/tech-connect/
-  - aid: zillow:mortech-api
-    name: Mortech API
-    description: >-
-      Mortech is Zillow Group's mortgage pricing and product eligibility
-      engine for lenders and partners. It exposes web services for real-time
-      rate quotes, scenario pricing, and product and pricing engine (PPE)
-      workflows used by lender websites, LOS integrations, and rate tables on
-      Zillow.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://www.mortech-inc.com
-    baseURL: https://www.mortech-inc.com
-    tags:
-      - Lenders
-      - Mortgage
-      - Pricing
-      - Rates
-    properties:
-      - type: Portal
-        url: https://www.mortech-inc.com
-  - aid: zillow:showcase-api
-    name: Zillow Showcase
-    description: >-
-      Zillow Showcase is a premium listing enhancement product for agents and
-      MLSs that integrates immersive media (interactive floor plans, virtual
-      tours, AI-enhanced photography) into Zillow listings. Integration is
-      delivered through MLS feed enrichment and Zillow Group partner
-      onboarding rather than a self-serve public API.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://www.zillow.com/z/showcase/
-    baseURL: https://www.zillow.com
-    tags:
-      - Listings
-      - Media
-      - MLS
-      - Real Estate
-      - Showcase
-    properties:
-      - type: Portal
-        url: https://www.zillow.com/z/showcase/
+  - Showcase
+  properties:
+  - type: Portal
+    url: https://www.zillow.com/z/showcase/
 common:
-  - url: https://www.zillow.com
-    name: Zillow Website
-    type: Website
-  - url: https://www.zillowgroup.com
-    name: Zillow Group
-    type: ParentCompany
-  - url: https://www.zillowgroup.com/developers
-    name: Zillow Group Developers
-    type: Portal
-  - url: https://bridgedataoutput.com
-    name: Bridge Interactive
-    type: Portal
-  - url: https://bridgedataoutput.com/docs/platform/
-    name: Bridge Documentation
-    type: Documentation
-  - url: https://www.zillowgroup.com/tech-connect/
-    name: Zillow Tech Connect
-    type: Partners
-  - url: https://www.mortech-inc.com
-    name: Mortech
-    type: Subsidiary
-  - url: https://www.zillow.com/z/showcase/
-    name: Zillow Showcase
-    type: Product
-  - url: https://www.zillow.com/blog/
-    name: Zillow Porchlight Blog
-    type: Blog
-  - url: https://www.zillow.com/research/
-    name: Zillow Research
-    type: Research
-  - url: https://www.zillowgroup.com/news/
-    name: Zillow Group Newsroom
-    type: Newsroom
-  - url: https://github.com/zillowgroup
-    name: Zillow Group on GitHub
-    type: GitHubOrganization
-  - url: https://www.zillow.com/z/corp/terms/
-    name: Terms of Use
-    type: TermsOfService
-  - url: https://www.zillow.com/z/corp/privacy/
-    name: Privacy Notice
-    type: PrivacyPolicy
-  - url: https://zillow.zendesk.com/hc/en-us
-    name: Zillow Help Center
-    type: Support
-  - url: https://x.com/zillow
-    name: Zillow on X
-    type: X
-  - url: https://www.facebook.com/Zillow
-    name: Zillow on Facebook
-    type: Facebook
-  - url: https://www.linkedin.com/company/zillow
-    name: Zillow on LinkedIn
-    type: LinkedIn
-  - url: https://www.instagram.com/zillow
-    name: Zillow on Instagram
-    type: Instagram
+- url: https://www.zillow.com
+  name: Zillow Website
+  type: Website
+- url: https://www.zillowgroup.com
+  name: Zillow Group
+  type: ParentCompany
+- url: https://www.zillowgroup.com/developers
+  name: Zillow Group Developers
+  type: Portal
+- url: https://bridgedataoutput.com
+  name: Bridge Interactive
+  type: Portal
+- url: https://bridgedataoutput.com/docs/platform/
+  name: Bridge Documentation
+  type: Documentation
+- url: https://www.zillowgroup.com/tech-connect/
+  name: Zillow Tech Connect
+  type: Partners
+- url: https://www.mortech-inc.com
+  name: Mortech
+  type: Subsidiary
+- url: https://www.zillow.com/z/showcase/
+  name: Zillow Showcase
+  type: Product
+- url: https://www.zillow.com/blog/
+  name: Zillow Porchlight Blog
+  type: Blog
+- url: https://www.zillow.com/research/
+  name: Zillow Research
+  type: Research
+- url: https://www.zillowgroup.com/news/
+  name: Zillow Group Newsroom
+  type: Newsroom
+- url: https://github.com/zillowgroup
+  name: Zillow Group on GitHub
+  type: GitHubOrganization
+- url: https://www.zillow.com/z/corp/terms/
+  name: Terms of Use
+  type: TermsOfService
+- url: https://www.zillow.com/z/corp/privacy/
+  name: Privacy Notice
+  type: PrivacyPolicy
+- url: https://zillow.zendesk.com/hc/en-us
+  name: Zillow Help Center
+  type: Support
+- url: https://x.com/zillow
+  name: Zillow on X
+  type: X
+- url: https://www.facebook.com/Zillow
+  name: Zillow on Facebook
+  type: Facebook
+- url: https://www.linkedin.com/company/zillow
+  name: Zillow on LinkedIn
+  type: LinkedIn
+- url: https://www.instagram.com/zillow
+  name: Zillow on Instagram
+  type: Instagram
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
