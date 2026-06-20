@@ -11,7 +11,7 @@ description: Zillow is the largest U.S. real-estate marketplace, offering home a
   and MLSs, the Zillow Tech Connect partner program for vendors, Mortech for mortgage
   pricing, and the Showcase listing enhancement product. This profile documents what
   is publicly findable on each surviving API surface.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://www.zillow.com
 created: '2024-01-01'
 modified: '2026-05-23'
@@ -38,7 +38,7 @@ apis:
     suite was deprecated and shut down on September 30, 2021. Existing keys stopped
     functioning. No new access is granted. Equivalent listing and valuation data is
     now delivered to licensed parties through Bridge Interactive.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.zillowgroup.com/developers
   baseURL: https://www.zillow.com/webservice
   tags:
@@ -61,7 +61,7 @@ apis:
     for searching listings, members, offices, media, and other RESO Data Dictionary
     resources, plus a Listing Output service for bulk replication. Access requires
     MLS approval and is gated per data feed.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://bridgedataoutput.com/docs/platform/
   baseURL: https://api.bridgedataoutput.com
   tags:
@@ -84,7 +84,7 @@ apis:
     software vendors integrate with Zillow Premier Agent for contact, lead, and listing
     sync. Vendors are vetted and onboarded directly with Zillow Group rather than
     via a self-serve developer portal.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.zillowgroup.com/tech-connect/
   baseURL: https://www.zillowgroup.com/tech-connect/
   tags:
@@ -101,7 +101,7 @@ apis:
     engine for lenders and partners. It exposes web services for real-time rate quotes,
     scenario pricing, and product and pricing engine (PPE) workflows used by lender
     websites, LOS integrations, and rate tables on Zillow.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.mortech-inc.com
   baseURL: https://www.mortech-inc.com
   tags:
@@ -119,7 +119,7 @@ apis:
     AI-enhanced photography) into Zillow listings. Integration is delivered through
     MLS feed enrichment and Zillow Group partner onboarding rather than a self-serve
     public API.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.zillow.com/z/showcase/
   baseURL: https://www.zillow.com
   tags:
