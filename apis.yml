@@ -132,6 +132,8 @@ apis:
   - type: Portal
     url: https://www.zillow.com/z/showcase/
 common:
+- type: DomainSecurity
+  url: security/zillow-domain-security.yml
 - url: https://www.zillow.com
   name: Zillow Website
   type: Website
