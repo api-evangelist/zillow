@@ -2,11 +2,13 @@
   "repo": "zillow",
   "feeds": [
     {
-      "source": "https://www.zillow.com/research/",
+      "source": "https://www.zillow.com/blog/",
+      "feed_url": "https://www.zillow.com/blog/",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 403 Forbidden"
+      "method": "none"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-06-27T13:23:20Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
