@@ -11,7 +11,19 @@ description: Zillow is the largest U.S. real-estate marketplace, offering home a
   and MLSs, the Zillow Tech Connect partner program for vendors, Mortech for mortgage
   pricing, and the Showcase listing enhancement product. This profile documents what
   is publicly findable on each surviving API surface.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Free · Requires approval
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zillow.png
 url: https://www.zillow.com
 created: '2024-01-01'
 modified: '2026-05-23'
