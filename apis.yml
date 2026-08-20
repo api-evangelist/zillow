@@ -38,6 +38,17 @@ tags:
 - Listings
 - Mortgage
 - MLS
+- Real-Estate
+- Rentals
+- RESO
+tags_raw:
+- Bridge
+- Brokers
+- IDX
+- Lenders
+- Listings
+- Mortgage
+- MLS
 - Real Estate
 - Rentals
 - RESO
@@ -54,6 +65,12 @@ apis:
   humanURL: https://www.zillowgroup.com/developers
   baseURL: https://www.zillow.com/webservice
   tags:
+  - Deprecated
+  - Listings
+  - Real-Estate
+  - Sunset
+  - Zestimate
+  tags_raw:
   - Deprecated
   - Listings
   - Real Estate
@@ -81,6 +98,13 @@ apis:
   - Listings
   - MLS
   - OData
+  - Real-Estate
+  - RESO
+  tags_raw:
+  - Bridge
+  - Listings
+  - MLS
+  - OData
   - Real Estate
   - RESO
   properties:
@@ -100,6 +124,11 @@ apis:
   humanURL: https://www.zillowgroup.com/tech-connect/
   baseURL: https://www.zillowgroup.com/tech-connect/
   tags:
+  - CRM
+  - Leads
+  - Partners
+  - Real-Estate
+  tags_raw:
   - CRM
   - Leads
   - Partners
@@ -135,6 +164,12 @@ apis:
   humanURL: https://www.zillow.com/z/showcase/
   baseURL: https://www.zillow.com
   tags:
+  - Listings
+  - Media
+  - MLS
+  - Real-Estate
+  - Showcase
+  tags_raw:
   - Listings
   - Media
   - MLS
