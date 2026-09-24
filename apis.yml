@@ -49,7 +49,7 @@ tags:
 - Listings
 - Mortgage
 - MLS
-- Real-Estate
+- Real Estate
 - Rentals
 - RESO
 tags_raw:
@@ -63,6 +63,7 @@ tags_raw:
 - Real Estate
 - Rentals
 - RESO
+- Real-Estate
 apis:
 - aid: zillow:zillow-web-services-historical
   name: Zillow Web Services (Historical / Sunset)
@@ -78,7 +79,7 @@ apis:
   tags:
   - Deprecated
   - Listings
-  - Real-Estate
+  - Real Estate
   - Sunset
   - Zestimate
   tags_raw:
@@ -87,13 +88,12 @@ apis:
   - Real Estate
   - Sunset
   - Zestimate
+  - Real-Estate
   properties:
   - type: Successor
     url: https://bridgedataoutput.com
   - type: Announcement
     url: https://www.zillowgroup.com/developers
-  - url: graphql/zillow-graphql.md
-    type: GraphQL
 - aid: zillow:bridge-interactive-api
   name: Bridge Interactive API
   description: Bridge Interactive is Zillow Group's RESO-compliant data distribution
@@ -109,7 +109,7 @@ apis:
   - Listings
   - MLS
   - OData
-  - Real-Estate
+  - Real Estate
   - RESO
   tags_raw:
   - Bridge
@@ -118,6 +118,7 @@ apis:
   - OData
   - Real Estate
   - RESO
+  - Real-Estate
   properties:
   - type: Documentation
     url: https://bridgedataoutput.com/docs/platform/
@@ -138,12 +139,13 @@ apis:
   - CRM
   - Leads
   - Partners
-  - Real-Estate
+  - Real Estate
   tags_raw:
   - CRM
   - Leads
   - Partners
   - Real Estate
+  - Real-Estate
   properties:
   - type: Portal
     url: https://www.zillowgroup.com/tech-connect/
@@ -178,7 +180,7 @@ apis:
   - Listings
   - Media
   - MLS
-  - Real-Estate
+  - Real Estate
   - Showcase
   tags_raw:
   - Listings
@@ -186,6 +188,7 @@ apis:
   - MLS
   - Real Estate
   - Showcase
+  - Real-Estate
   properties:
   - type: Portal
     url: https://www.zillow.com/z/showcase/
